@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../_partials/_head %>
+    <style>
+      .list-group-item {
+        /*border: none !important;*/
+        /*background: #0f9aee !important;
+        color: white !important;*/
+      }
+    </style>
+    <title>Dashboard</title>
+  </head>
+  <body class="app">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Arsip</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><b>jenis naskah</b></p>
+            <p class="jenis-naskah--text">...</p>
+
+            <p><b>jumlah berkas</b></p>
+            <p class="jumlah-berkas--text">...</p>
+
+            <p><b>masalah</b></p>
+            <p class="masalah--text">...</p>
+
+            <p><b>pejabat penanda tangan</b></p>
+            <p class="pejabat-penanda-tangan--text">...</p>
+
+            <p><b>tingkat perkembangan</b></p>
+            <p class="tingkat-perkembangan--text">...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- #Left Sidebar ==================== -->
+      <% include ../../_partials/_sidebar %>
+      <!-- #Main ============================ -->
+      <div class="page-container">
+        <!-- ### $Topbar ### -->
+
+        <% include ../../_partials/_topbar %>
+
+        <!-- ### $App Screen Content ### -->
+        <main class='main-content bgc-grey-100'>
+          <div id='mainContent'>  
+            <div class="masonry-item col-md-12">
+              <div class="bgc-white p-20 bd">
+                <h6 class="c-grey-900">Data smep</h6>
+                <div class="mT-30">
+                  <div class="list-group">
+                   <a href='/web/viewer.html?file=/pdf/smep/identifikasi kearsipan tahun 2016.pdf' class="list-box list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">identifikasi kearsipan tahun 2016</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/smep/hasi pengawasan kearsipan SKPD-UKPD tahun 2016.pdf' class="list-box list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">hasil pengawasan kearsipan SKPD-UKPD tahun 2016</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/smep/DATA HASIL SURVEI ARSIP SKPD-UKPD _sampling.pdf' class="list-box list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">DATA HASIL SURVEI ARSIP SKPD-UKPD _sampling</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/smep/HASIL SMEP 2014 REKAP SKOR.pdf' class="list-box list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">HASIL SMEP 2014 REKAP SKOR</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/smep/HASIL PENGAWASAN TAHUN 2016.pdf' class="list-box list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">HASIL PENGAWASAN TAHUN 2016</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- ### $App Screen Footer ### -->
+        
+        <% include ../../_partials/_footer %>  
+
+      </div>
+    </div>
+
+    <% include ../../_partials/_script  %>
+  </body>
+</html>

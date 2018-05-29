@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../_partials/_head %>
+    <style>
+      .list-group-item {
+        /*border: none !important;*/
+        /*background: #0f9aee !important;
+        color: white !important;*/
+      }
+    </style>
+    <title>Dashboard</title>
+  </head>
+  <body class="app">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Arsip</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><b>jenis naskah</b></p>
+            <p class="jenis-naskah--text">...</p>
+
+            <p><b>jumlah berkas</b></p>
+            <p class="jumlah-berkas--text">...</p>
+
+            <p><b>masalah</b></p>
+            <p class="masalah--text">...</p>
+
+            <p><b>pejabat penanda tangan</b></p>
+            <p class="pejabat-penanda-tangan--text">...</p>
+
+            <p><b>tingkat perkembangan</b></p>
+            <p class="tingkat-perkembangan--text">...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- #Left Sidebar ==================== -->
+      <% include ../../_partials/_sidebar %>
+      <!-- #Main ============================ -->
+      <div class="page-container">
+        <!-- ### $Topbar ### -->
+
+        <% include ../../_partials/_topbar %>
+
+        <!-- ### $App Screen Content ### -->
+        <main class='main-content bgc-grey-100'>
+          <div id='mainContent'>  
+            <div class="masonry-item col-md-12">
+              <div class="bgc-white p-20 bd">
+                <h6 class="c-grey-900">Regulasi kearsipan</h6>
+                <div class="mT-30">
+                  <div class="list-group">
+                    <a href='/web/viewer.html?file=/pdf/regulasi/2.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">PP-No-28-Tahun-2012-tentang-Pelaksanaan-UU-No-43-Tahun-2009</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/3. PERDA 4 TAHUN 2017 TENTANG KEARSIPAN DAERAH.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">PERDA 4 TAHUN 2017 TENTANG KEARSIPAN DAERAH</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/7.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">pergub 74 2008 PEMBAKUAN PRASARANA DAN SARANA KEARSIPAN</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/8.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">Peraturan_Gubernur_Nomor_211_Tahun_2009 tentang Prosedur surat masuk pembuatan naskah dinas dan prosedur surat keluar</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/9.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">Pengelolaan arsip inaktif pergub 90 tahun 2010</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/10.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--text">PERGUB_94_TH_2016_NEW TND</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/11.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--bullet"></div>
+                      <div class="list-box--text">PERGUB_NO.205_TAHUN_.2016 tentang Organisasi Ketatausahaan Daerah</div>
+                    </a>
+                    <a href='/web/viewer.html?file=/pdf/regulasi/12.pdf' class="list-box list-group-item list-group-item-action" data-url='url'>
+                      <div class="list-box--bullet"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- ### $App Screen Footer ### -->
+        
+        <% include ../../_partials/_footer %>  
+
+      </div>
+    </div>
+
+    <% include ../../_partials/_script  %>
+  </body>
+</html>

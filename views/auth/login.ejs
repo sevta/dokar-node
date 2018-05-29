@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../_partials/_head %>
+    <title>Dashboard</title>
+  </head>
+  <body class="app">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+      <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv " id="section-primary" style="background: url('http://4.bp.blogspot.com/-wHkApA64jLQ/UqHEhULFEeI/AAAAAAAB0m4/HnwrqCdtTHM/s1600/Jakarta+Indonesia+Wallpaper.jpg')">
+          <div class="pos-a centerXY" style='display: none;'>
+            <div class="bgc-white bdrs-50p pos-r" style='width: 120px; height: 120px;'>
+              <img class="pos-a centerXY" src="assets/static/images/logo2.jpg" alt="" style="width: 70px;">
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+          <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
+          <form action="/login" method='post'>
+            <div class="form-group">
+              <label class="text-normal text-dark">Username</label>
+              <input type="text" class="form-control" placeholder="Username" name='username'>
+            </div>
+            <div class="form-group">
+              <label class="text-normal text-dark">Password</label>
+              <input type="password" class="form-control" placeholder="Password" name='password'>
+            </div>
+            <div class="form-group">
+              <div class="peers ai-c jc-sb fxw-nw">
+                <div class="peer">
+                  <div class="checkbox checkbox-circle checkbox-info peers ai-c">
+                    <input type="checkbox" id="inputCall1" name="inputCheckboxesCall" class="peer">
+                    <label for="inputCall1" class=" peers peer-greed js-sb ai-c">
+                      <span class="peer peer-greed">Remember Me</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="peer">
+                  <button type='submit' class="btn btn-primary">Login</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.0/granim.min.js'></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
+    <% include ../_partials/_script  %>
+    <script>
+      $(document).ready(function() {
+
+        var active = false
+
+
+
+        $('.ml11 .letters').each(function(){
+          $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+        });
+      
+        $('.burger-menu').on('click' , function() {
+          $(this).toggleClass('active')
+          $('.navbar-menu').toggleClass('active')
+          $('#n-home').toggleClass('active')
+          active = !active
+        })
+
+        $('.login-nav').on('click' , function() {
+          $('.popup-login').toggleClass('active')
+        })
+
+        $('.popup-login').on('click' , function() {
+          $(this).removeClass('active')
+        })
+
+        $('.popup-login--center').on('click' , function(evt) {
+          evt.stopPropagation()
+        })
+        
+    
+        animateLettering()
+        // gradientBG()
+        // moveBackground('.background')
+
+        function animateLettering() {
+          anime.timeline({loop: true})
+            .add({
+              targets: '.ml11 .line',
+              scaleY: [0,1],
+              opacity: [0.5,1],
+              easing: "easeOutExpo",
+              duration: 700
+            })
+            .add({
+              targets: '.ml11 .line',
+              translateX: [0,$(".ml11 .letters").width()],
+              easing: "easeOutExpo",
+              duration: 700,
+              delay: 100
+            }).add({
+              targets: '.ml11 .letter',
+              opacity: [0,1],
+              easing: "easeOutExpo",
+              duration: 600,
+              offset: '-=775',
+              delay: function(el, i) {
+                return 34 * (i+1)
+              }
+            }).add({
+              targets: '.ml11',
+              opacity: 0,
+              duration: 1000,
+              easing: "easeOutExpo",
+              delay: 1000
+            });
+        }
+
+        function moveBackground($el) {
+          var x = 0;
+          setInterval(function(){
+              x-=.1;
+              $($el).css('background-position', x + 'px 0');
+          }, 1);
+        }
+
+        function gradientBG() {
+          var granim = new Granim({
+            element: '#section-primary' ,
+            name: 'basic-gradient' ,
+            direction: 'left-right' ,
+            opacity: [1 , 1] ,
+            states: {
+              "default-state" : {
+                gradients: [
+                  ['#FB6900', '#FF842B'],
+                  // ['#02AAB0', '#00CDAC'],
+                  ['#FF3204' , '#FF8F3E'] ,
+                  ['#DA22FF', '#9733EE']
+                ]
+              }
+            }
+          })
+        }
+      })
+    </script>
+  </body>
+</html>

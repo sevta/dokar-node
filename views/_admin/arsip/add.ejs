@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../_partials/_head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+    <title>Dashboard</title>
+  </head>
+  <body class="app">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+      <!-- #Left Sidebar ==================== -->
+      <% include ../../_partials/_sidebar %>
+      <!-- #Main ============================ -->
+      <div class="page-container">
+        <!-- ### $Topbar ### -->
+
+        <% include ../../_partials/_topbar %>
+
+        <!-- ### $App Screen Content ### -->
+        <main class='main-content bgc-grey-100'>
+          <div id='mainContent'>
+            <div class="container-fluid">
+              <h4 class="c-grey-900 mT-10 mB-30">Tambah Arsip</h4>
+              <div class="col-md-12">
+                <form action='/arsip/add' method='post'>
+                  <fieldset>
+                    <!-- <legend>Legend</legend> -->
+                    <hr>
+                    <div class="form-group">
+                      <label for="masalah">Masalah</label>
+                      <textarea class="form-control" id="masalah" rows="3" name='masalah'></textarea>
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="tgl-surat">No tgl surat</label>
+                      <input type="text" class="form-control" placeholder="No tgl surat" id="tgl-surat" name='tgl_surat'>
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="jenis-naskah">Jenis naskah</label>
+                      <input type="text" class="form-control" id="jenis-naskah" placeholder="Jenis naskah" name='jenis_naskah'>
+                    </div>
+                    <div class="form-group">
+                      <label for="pejabat-penanda-tangan">Pejabat penanda tangan</label>
+                      <input type="text" class="form-control" id="pejabat-penanda-tangan" name="pejabat_penanda_tangan" placeholder="Pejabat penanda tangan">
+                      <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah-berkas">Jumlah berkas</label>
+                      <input type="number" class="form-control" id="jumlah-berkas" name="jumlah_berkas" placeholder="Jumlah berkas">
+                      <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="tingakat-perkembangan">Tingkat perkembangan</label>
+                     <select class="form-control" id="tingkat-perkembangan" name="tingkat_perkembangan">
+                        <option value='foto copy'>foto copy</option>
+                        <option value='asli'>asli</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- ### $App Screen Footer ### -->
+        
+        <% include ../../_partials/_footer %>  
+
+      </div>
+    </div>
+
+    <% include ../../_partials/_script  %>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js'></script>
+    <script>
+      $(document).ready(function() {
+        $('#tgl-surat').datepicker()
+      })
+    </script>
+  </body>
+</html>

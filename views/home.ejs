@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./_partials/_head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    <title>Dashboard</title>
+    <style>
+      .slick-section {
+        width: 100%;
+        height: 300px;
+      }
+
+      .slick-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    </style>
+  </head>
+  <body class="app">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+      <!-- #Left Sidebar ==================== -->
+      <% include ./_partials/_sidebar %>
+      <!-- #Main ============================ -->
+      <div class="page-container">
+        <!-- ### $Topbar ### -->
+
+        <% include ./_partials/_topbar %>
+
+        <!-- ### $App Screen Content ### -->
+        <main class='main-content bgc-grey-100'>
+          <div id='mainContent'>
+            <div class="row gap-20 masonry pos-r">
+
+              <div class="masonry-item col-md-12">
+                <div class='bd bgc-white p-20'>
+                  <div class="slick-container">
+                    <div class="slick-section">
+                      <img src="./images/1.jpeg" alt="">
+                    </div>
+                    <div class="slick-section">
+                      <img src="./images/2.jpeg" alt="">
+                    </div>
+                    <div class="slick-section">
+                      <img src="./images/3.jpeg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="masonry-sizer col-md-6">
+              </div>
+              <div class="masonry-item  w-100">
+                <div class="row gap-20">
+                  <!-- #Toatl Visits ==================== -->
+                  <div class='col-md-6'>
+                    <div class="layers bd bgc-white p-20">
+                      <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Total Users</h6>
+                      </div>
+                      <div class="layer w-100">
+                        <div class="peers ai-sb fxw-nw">
+                          <div class="peer peer-greed">
+                            <span id="sparklinedash"></span>
+                          </div>
+                          <div class="peer">
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500"><%= user_length %></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- #Total Page Views ==================== -->
+                  <div class='col-md-6'>
+                    <div class="layers bd bgc-white p-20">
+                      <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Total Arsip</h6>
+                      </div>
+                      <div class="layer w-100">
+                        <div class="peers ai-sb fxw-nw">
+                          <div class="peer peer-greed">
+                            <span id="sparklinedash2"></span>
+                          </div>
+                          <div class="peer">
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500"><%= archive_length %></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- #Unique Visitors ==================== -->
+
+                  <!-- #Bounce Rate ==================== -->
+                </div>
+              </div>
+              <div class="masonry-item col-md-6">
+                <!-- #Sales Report ==================== -->
+                <div class="bd bgc-white">
+                  <div class="layers">
+                    <div class="layer w-100 p-20">
+                      <h6 class="lh-1">List Arsip</h6>
+                    </div>
+                    <div class="layer w-100">
+                      <div class="bgc-light-blue-500 c-white p-20">
+                        <div class="peers ai-c jc-sb gap-40">
+                          <div class="peer peer-greed">
+                            <h5>November 2017</h5>
+                            <p class="mB-0">List Arsip</p>
+                          </div>
+                          <div class="peer">
+                            <!-- <h3 class="text-right">$6,000</h3> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="table-responsive p-20">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th class=" bdwT-0">masalah</th>
+                              <th class=" bdwT-0">Status</th>
+                              <th class=" bdwT-0">pengunggah</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% archive.map(function(obj , i) { %>
+                              <tr>
+                                <td class='fw-600'><%= obj.masalah%></td>
+                                <td>
+                                  <span class='<%= obj.tingkat_perkembangan === "asli" ? 
+                                  "badge bgc-orange-50 c-orange-700 p-10 lh-0 tt-c badge-pill" 
+                                  : "badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill" %>'><%= obj.tingkat_perkembangan%></span>
+                                </td>
+                                <td class='fw-600'><%= obj.user_id.username === "" ? "---" : obj.user_id.username%></td>
+                              </tr>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                       </div>
+                    </div>
+                  </div>
+                  <div class="ta-c bdT w-100 p-20">
+                    <a href="/arsip">Lihat semua</a>
+                  </div>
+                </div>
+              </div>
+              <div class="masonry-item col-md-6">
+                <!-- #Weather ==================== -->
+                <div class="bd bgc-white p-20">
+                  <div class="layers">
+                    <!-- Widget Title -->
+                    <div class="layer w-100 mB-20">
+                      <h6 class="lh-1">Weather</h6>
+                    </div>
+
+                    <!-- Today Weather -->
+                    <div class="layer w-100">
+                      <div class="peers ai-c jc-sb fxw-nw">
+                        <div class="peer peer-greed">
+                          <div class="layers">
+                            <!-- Temprature -->
+                            <div class="layer w-100">
+                              <div class="peers fxw-nw ai-c">
+                                <div class="peer mR-20">
+                                  <h3>32<sup>°F</sup></h3>
+                                </div>
+                                <div class="peer">
+                                  <canvas class="sleet" width="44" height="44"></canvas>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Condition -->
+                            <div class="layer w-100">
+                              <span class="fw-600 c-grey-600">Partly Clouds</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="peer">
+                          <div class="layers ai-fe">
+                            <div class="layer">
+                              <h5 class="mB-5">Monday</h5>
+                            </div>
+                            <div class="layer">
+                              <span class="fw-600 c-grey-600">Nov, 01 2017</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Today Weather Extended -->
+                    <div class="layer w-100 mY-30">
+                      <div class="layers bdB">
+                        <div class="layer w-100 bdT pY-5">
+                          <div class="peers ai-c jc-sb fxw-nw">
+                            <div class="peer">
+                              <span>Wind</span>
+                            </div>
+                            <div class="peer ta-r">
+                              <span class="fw-600 c-grey-800">10km/h</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer w-100 bdT pY-5">
+                          <div class="peers ai-c jc-sb fxw-nw">
+                            <div class="peer">
+                              <span>Sunrise</span>
+                            </div>
+                            <div class="peer ta-r">
+                              <span class="fw-600 c-grey-800">05:00 AM</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer w-100 bdT pY-5">
+                          <div class="peers ai-c jc-sb fxw-nw">
+                            <div class="peer">
+                              <span>Pressure</span>
+                            </div>
+                            <div class="peer ta-r">
+                              <span class="fw-600 c-grey-800">1B</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Week Forecast -->
+                    <div class="layer w-100">
+                      <div class="peers peers-greed ai-fs ta-c">
+                        <div class="peer">
+                          <h6 class="mB-10">MON</h6>
+                          <canvas class="sleet" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">32<sup>°F</sup></span>
+                        </div>
+                        <div class="peer">
+                          <h6 class="mB-10">TUE</h6>
+                          <canvas class="clear-day" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">30<sup>°F</sup></span>
+                        </div>
+                        <div class="peer">
+                          <h6 class="mB-10">WED</h6>
+                          <canvas class="partly-cloudy-day" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">28<sup>°F</sup></span>
+                        </div>
+                        <div class="peer">
+                          <h6 class="mB-10">THR</h6>
+                          <canvas class="cloudy" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">32<sup>°F</sup></span>
+                        </div>
+                        <div class="peer">
+                          <h6 class="mB-10">FRI</h6>
+                          <canvas class="snow" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">24<sup>°F</sup></span>
+                        </div>
+                        <div class="peer">
+                          <h6 class="mB-10">SAT</h6>
+                          <canvas class="wind" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">28<sup>°F</sup></span>
+                        </div>
+                        <div class="peer">
+                          <h6 class="mB-10">SUN</h6>
+                          <canvas class="sleet" width="30" height="30"></canvas>
+                          <span class="d-b fw-600">32<sup>°F</sup></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- ### $App Screen Footer ### -->
+        
+        <% include ./_partials/_footer %>  
+
+      </div>
+    </div>
+
+    <% include ./_partials/_script  %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('.slick-container').slick({
+          infinite: true,
+          speed: 300,
+        })
+      })
+    </script>
+  </body>
+</html>

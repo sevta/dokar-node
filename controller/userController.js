@@ -8,10 +8,30 @@ var session
 export default {
   index: (req , res , next) => {  
     console.log('from home' , session)
-    res.render('index', {
-      title: 'Express' ,
-      user: session
-    });
+    User.find({} , function(err , user) {
+      if (err) {
+        console.log(err)
+      } else {
+        Archive.find({})
+          .populate('user_id')
+          .sort([['updatedAt' , 'descending']])
+          .limit(7)
+          .exec(function(err , archive) {
+            if (err) {
+              console.log(err)
+            } else {
+              res.render('home', {
+                title: 'Express' ,
+                user: session ,
+                user_length: user.length ,
+                archive ,
+                archive_length: archive.length
+              });
+            }
+          })
+      }
+    })
+
   } ,
   arsip: (req , res , next) => {
     var perPage = 5
@@ -34,7 +54,7 @@ export default {
             .exec(function(err , archive) {
               Archive.count().exec(function(err , count) {
                 console.log(count , page)
-                return res.render('arsip/index' , {
+                return res.render('_admin/arsip/index' , {
                   user: session ,
                   archive ,
                   page ,
@@ -50,7 +70,8 @@ export default {
           isSearch = false
           Archive.find({})
             .populate('user_id')
-            .limit(perPage)
+            // uncomment this if you make manual pagination
+            // .limit(perPage)
             .skip(offset)
             // .sort({createdAt: 1})
             .sort([['updatedAt', 'descending']])
@@ -87,7 +108,7 @@ export default {
                         return html;
                     }
                 });
-                return res.render('arsip/index' , {
+                return res.render('_admin/arsip/index' , {
                   user: session ,
                   archive ,
                   page ,
@@ -106,7 +127,7 @@ export default {
   } ,
   addArsipView: (req , res , next) => {
     if (req.session.user) {
-      res.render('arsip/add' , {
+      res.render('_admin/arsip/add' , {
         user: session
       })
     } else {
@@ -167,12 +188,12 @@ export default {
     }
   } ,
   regulasi: (req , res , next) => {
-    res.render('regulasi/regulasi' , {
+    res.render('_admin/regulasi/index' , {
       user: session
     })
   } ,
   smep: (req , res , next) => {
-    res.render('smep/index' , {
+    res.render('_admin/smep/index' , {
       user: session
     })
   } ,
@@ -192,13 +213,13 @@ export default {
       console.log(user)
       if (!user) {
         console.log('not user')
-        res.redirect('/')
+        res.redirect('/login')
       } else {
         console.log(user)
         var compare = bcrypt.compareSync(req.body.password , user.password) 
         if (!compare) {
           console.log('wrong password')
-          res.redirect('/')
+          res.redirect('/login')
         } else {
           console.log('success login')
           req.session.user = user;
@@ -211,6 +232,6 @@ export default {
   logout: (req , res , next) => {
     req.session.destroy()
     session = null
-    res.redirect('/')
+    res.redirect('/login')
   }
 }

@@ -11,24 +11,41 @@ const upload_archive = multer({ inMemory: true })
 
 const router = express.Router();
 
-router.get('/', userController.index)
+function authCheck(req , res , next) {
+  if (req.session.user) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+} 
+
+// backup old
+// router.get('/', userController.index)
+// -------------- new routes
+router.get('/', authCheck , userController.index)
+router.get('/login' , function(req , res , next) {
+  if (req.session.user) {
+    res.redirect('/')
+  } else {
+    res.render('auth/login')
+  }
+})
+router.get('/arsip' , authCheck , userController.arsip)
+router.get('/tambaharsip' , authCheck , userController.addArsipView)
+router.get('/regulasi' , authCheck , userController.regulasi)
+router.get('/profile' , authCheck , userController.profile)
+router.get('/arsip/(:id)' , authCheck , userController.viewArsip)
+router.get('/arsip/edit/(:id)' , authCheck , userController.editArsip)
+router.get('/smep' , authCheck , userController.smep)
+router.get('/admin' , authCheck , adminController.index)
+router.get('/logout' , authCheck , userController.logout)
+
 router.post('/login' , userController.login)
-
-router.get('/arsip/add' , userController.addArsipView)
 router.post('/arsip/add' , userController.addArsip)
-router.get('/regulasi' , userController.regulasi)
-router.get('/arsip' , userController.arsip)
-router.get('/profile' , userController.profile)
-router.get('/arsip/(:id)' , userController.viewArsip)
-router.get('/arsip/edit/(:id)' , userController.editArsip)
-
-router.get('/smep' , userController.smep)
-
-router.get('/admin' , adminController.index)
 router.post('/csv' , upload.single('csv') , adminController.handleCsv)
-router.get('/logout' , userController.logout)
 router.post('/seedusers' , adminController.seedUsers)
-
 router.post('/archive' , upload_archive.single('archive') , adminController.handleArchive)
+
+
 
 export default router;
