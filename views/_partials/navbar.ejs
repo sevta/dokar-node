@@ -1,0 +1,28 @@
+  <div class="n-navbar">
+    <div class="logo"></div>    
+    <div class="burger-menu">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </div>    
+    <div class="navbar-list">
+      <a href="/">beranda</a>
+      <% if (user) { %>
+        <a href="/profile">Profile</a>
+      <% } %>
+      <a href="/smep">smep</a>
+      <a href="/regulasi">regulasi kearsipan</a>
+      <a href='/arsip'>Daftar Arsip</a>
+      <a href="#">tutorial</a>
+      <a href="#">intruksi kerja</a>
+      <% if (!user) { %>
+        <a href="#" class='login-nav'>Login</a>
+      <% } %>
+      <% if (user) { %>
+        <% if (user.status ==  1) {%>
+          <a href="/admin">admin</a>
+        <% } %>
+        <a href='/logout'>logout</a>
+      <% } %>
+    </div>
+  </div>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ./_partials/head %>
+</head>
+<body>
+  <% include ./_partials/popup_login %>
+  <div class="navbar-menu"></div>
+  <div id="n-home">
+    <div class="section section1">
+      <canvas id='gradient-bg'></canvas>
+      <% include ./_partials/navbar %>
+      <div class="background"></div>
+      <div class="center">
+        <h1 class="title ml11">
+          <span class="text-wrapper">
+            <span class="line line1"></span>
+            <span class="letters">Daftar Arsip Jakarta</span>
+          </span>
+        </h1>
+        <div class="search-bar">
+          <div class="t-search">
+            Cari daftar arsip</div>
+          <form action="/arsip" method="get">
+            <input type="text" name='search' class="search-bar--input">
+            <button type='submit' class="search-btn">Cari</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section2">
+      <div class="center-2">
+        <div class="title title-center-2">Deklarasi Universal Tentang Kearsipan</div>
+        <div class="sub-title">
+          Majelis Umum Dewan Kearsipan Internasional, Oslo September 2010.
+          Disahkan dalam Sidang Ke-36 Sidang Umum UNESCO, Paris November 2011.</div>
+        <div class="list-container">
+          <div class="col">
+            <div class="col--text">
+              Arsip merekam keputusan, 
+              tindakan, dan memori</div>
+          </div>
+          <div class="col">
+            <div class="col--text">
+              Arsip merupakan warisan yang unik dan tidak tergantikan melintasi satu generasi ke generasi berikutnya;  
+            </div>
+          </div>
+          <div class="col">
+            <div class="col--text">
+              Arsip dikelola sejak penciptaan untuk melestarikan nilai guna dan peruntukannya;  
+            </div>
+          </div>
+           <div class="col">
+            <div class="col--text">
+              Arsip merupakan sumber informasi yang sah dalam mendukung kegiatan administrasi yang akuntabel dan transparan;
+            </div>
+          </div>
+          <div class="col">
+            <div class="col--text">
+              Arsip memainkan peran penting dalam pengembangan masyarakat dengan cara menjaga dan membantu memori individu dan kolektif;
+            </div>
+          </div>
+          <div class="col">
+            <div class="col--text">
+              Keterbukaan akses arsip memperkaya pengetahuan kita mengenai masyarakat, mendorong demokrasi, melindungi hak warga negara, dan
+            meningkatkan kualitas hidup.  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section3">
+      <div class="section3--center">
+        <div class="section3--center_title">Untuk mendukung hal tersebut, kami mengakui</div>
+        <div class="slider-text">
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section4">
+      <div class="background-section4"></div>
+      <div class="section4--center">
+        <div class="section4--center_title">Untuk mendukung hal tersebut, kami mengakui</div>
+        <div class="slider-text">
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+          <div class="slider-text--inner">kualitas keunikan arsip sebagai bukti kegiatan
+administrasi, budaya, dan intelektual, serta sebagai refleksi
+dari evolusi masyarakat;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section fp-auto-height n-footer">
+      &copy; copyright dokumen arsip jakarta
+    </div>
+
+  </div>
+
+  <!-- additional script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.0/granim.min.js'></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
+  <script src='js/home.js'></script>
+  <script>
+    $(document).ready(function() {
+
+      var active = false
+
+      $('#n-home').fullpage({
+        verticalCentered: false,
+        afterLoad: function(index) {
+          console.log(index)
+        } ,
+        onLeave: function(index , nextIndex , direction) {
+          console.log(nextIndex)
+          $('.title-center-2').removeClass('active')
+        }
+      })
+
+      $('.slider-text').slick({
+        arrows: false ,
+        dots: false
+      })
+
+      $('.ml11 .letters').each(function(){
+        $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+      });
+    
+      $('.burger-menu').on('click' , function() {
+        $(this).toggleClass('active')
+        $('.navbar-menu').toggleClass('active')
+        $('#n-home').toggleClass('active')
+        active = !active
+      })
+
+      $('.login-nav').on('click' , function() {
+        $('.popup-login').toggleClass('active')
+      })
+
+      $('.popup-login').on('click' , function() {
+        $(this).removeClass('active')
+      })
+
+      $('.popup-login--center').on('click' , function(evt) {
+        evt.stopPropagation()
+      })
+      
+  
+      animateLettering()
+      gradientBG()
+      // moveBackground('.background')
+
+      function animateLettering() {
+        anime.timeline({loop: true})
+          .add({
+            targets: '.ml11 .line',
+            scaleY: [0,1],
+            opacity: [0.5,1],
+            easing: "easeOutExpo",
+            duration: 700
+          })
+          .add({
+            targets: '.ml11 .line',
+            translateX: [0,$(".ml11 .letters").width()],
+            easing: "easeOutExpo",
+            duration: 700,
+            delay: 100
+          }).add({
+            targets: '.ml11 .letter',
+            opacity: [0,1],
+            easing: "easeOutExpo",
+            duration: 600,
+            offset: '-=775',
+            delay: function(el, i) {
+              return 34 * (i+1)
+            }
+          }).add({
+            targets: '.ml11',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+          });
+      }
+
+      function moveBackground($el) {
+        var x = 0;
+        setInterval(function(){
+            x-=.1;
+            $($el).css('background-position', x + 'px 0');
+        }, 1);
+      }
+
+      function gradientBG() {
+        var granim = new Granim({
+          element: '#gradient-bg' ,
+          name: 'basic-gradient' ,
+          direction: 'left-right' ,
+          opacity: [1 , 1] ,
+          states: {
+            "default-state" : {
+              gradients: [
+                ['#FB6900', '#FF842B'],
+                // ['#02AAB0', '#00CDAC'],
+                ['#FF3204' , '#FF8F3E'] ,
+                ['#DA22FF', '#9733EE']
+              ]
+            }
+          }
+        })
+      }
+    })
+  </script>
+</body>
+</html>

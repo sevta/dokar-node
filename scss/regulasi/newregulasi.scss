@@ -1,0 +1,255 @@
+@import '../_var';
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,700,800,900');
+$grey: #2A3649;
+$orange: #E96404;
+
+body {
+  background: #F1F1F1;
+  position: relative;
+}
+.list-title {
+  font-family: Maven Pro;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 38px;
+  font-size: 36px;
+  color: #696969;
+  margin-bottom: 40px;
+}
+
+.pdf-container {
+  @include size(100% , 100%);
+  position: fixed;
+  z-index: 49;
+  background: rgba($color: $grey , $alpha: .9);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.popup-login {
+  @include size(100% , 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba($color: #343F51 , $alpha: .95);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  &--center {
+    width: 283px;
+    height: 314px;
+    @include center;
+    // background: tomato;
+    .login--text {
+      color: white;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 78px;
+      font-size: 64px;
+    }
+    .login--subtext {
+      color: white;
+      font-style: normal;
+      font-weight: normal;
+      line-height: normal;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .login--input {
+      width: 100%;
+      height: 41px;
+      background: #FFFFFF;
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.14);
+      border-radius: 32px;
+      border: none;
+      padding-left: 25px;
+      margin-top: 15px;
+      &:focus { outline: none; }
+    }
+    .btn-login {
+      width: 107px;
+      height: 41px;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+
+      background: #FF8206;
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.14);
+      border-radius: 32px;
+
+      font-size: 16px;
+
+      margin-top: 15px;
+    }
+  }
+}
+
+.n-navbar {
+  @include size(100% , 82px);
+  // position: absolute;
+  // top: 0;
+  left: 0;
+  // background: white;
+  // background: $secondary-color;
+  background: #FB6900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 60px;
+  box-shadow: inset 0px 4px 10px rgba(211, 88, 0, 0.5);
+  .logo {
+    @include size(113px , 60px);
+    background: #333;
+    background: url('../../img/dki.png') no-repeat;
+    background-size: cover;
+    // margin-top: 15px;
+    // @include center-vertical;
+    // left: 90px;
+    margin-left: -30px;
+  }
+  .burger-menu {
+    @include size(24px , 20px);
+    // background: #333;
+    display: flex;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    // @include center-vertical;
+    left: 180px;
+    cursor: pointer;
+    // align-items: space-between;
+    .line {
+      @include size(100% , 3px);
+      background: white;
+      border-radius: 2px;
+    }
+  }
+  .navbar-list {
+    .login-nav {
+      background: $secondary-color;
+      border-radius: 20px;
+      padding: 6px 10px;
+      font-weight: bold;
+    }
+    a {
+      margin-right: 20px;
+      color: white;
+      // color: $secondary-color;
+      text-transform: capitalize;
+      font-size: 14px;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+#regulasi {
+  @include size(100% , 100%);
+  position: relative;
+  margin-bottom: 30px;
+  transition: all .4s ease;
+  &.active  { 
+  }
+  &.arsip {
+    padding-top: 60px;
+  }
+  .container-list {
+    width: 657px;
+    height: auto;
+    // background: tomato;
+    margin: 0 auto;
+    margin-top: 60px;
+    .list-subtitle {
+      display: none;
+      font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 26px;
+      font-size: 16px;
+      margin-top: 20px;
+
+      color: #9C9C9C;
+
+      margin-bottom: 40px;
+    }
+    .list-box {
+      width: 100%;
+      height: 56px;
+      background: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding-left: 30px;
+      cursor: pointer;
+      margin-bottom: 6px;
+      border: solid #EEEDED 2px;
+      transition: all .1s ease;
+      overflow: hidden;
+      &--bullet {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #7EE0FF;
+        transition: all .4s ease;
+      }
+      &--text {
+        font-family: Nunito Sans;
+        font-style: normal;
+        line-height: 22px;
+        font-size: 14px;
+        color: #686F70;
+        padding-left: 50px;
+        font-weight: 600;
+      }
+      &:hover {
+        box-shadow: 6px 6px 20px rgba($color: #333 , $alpha: .1);
+        .list-box--bullet {
+          width: 10px;
+          height: 100%;
+          margin-left: -30px;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+.ornament-city {
+  @include size(100% , 396px);
+  background: url('../../img/city-grey.svg');
+  position: absolute;
+  bottom: -10px;
+  z-index: -1;
+}
+
+
+.n-footer {
+  width: 100%;
+  padding: 15px 60px;
+  background: #E8E8E8;
+  color: $secondary-color;
+  // color: white;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  z-index: 40;
+  // background: $orange;
+  // background: $secondary-color;
+  // text-align: center;
+  &.fix {
+    position: relative;
+  }
+}

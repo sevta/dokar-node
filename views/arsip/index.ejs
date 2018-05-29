@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include ../_partials/head %>
+    <link rel="stylesheet" href="./stylesheets/regulasi/newregulasi.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <style>
+    .pdfobject-container { height: 500px;}
+    .pdfobject { border: 1px solid #666; }
+    .arsip {
+      padding-top: 60px;
+    }
+    .list-title {
+      margin-bottom: 40px;
+      margin-top: 60px;
+    }
+    .modal {
+      transition: all .4s ease;
+    }
+    .modal.active {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      background: rgba(0,0,0,0.9);
+
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div class="navbar-menu"></div>
+
+  <% include ../_partials/popup_login %>
+
+  <section id="regulasi arsip">
+    <% include ../_partials/navbar %>
+    
+    <div class="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Arsip</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><b>jenis naskah</b></p>
+            <p class="jenis-naskah--text">...</p>
+
+            <p><b>jumlah berkas</b></p>
+            <p class="jumlah-berkas--text">...</p>
+
+            <p><b>masalah</b></p>
+            <p class="masalah--text">...</p>
+
+            <p><b>pejabat penanda tangan</b></p>
+            <p class="pejabat-penanda-tangan--text">...</p>
+
+            <p><b>tingkat perkembangan</b></p>
+            <p class="tingkat-perkembangan--text">...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="list-title">Daftar Arsip</div>
+          <div class="search-form">
+            <form action="/arsip" method='get'>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input type="text" name='search' class="form-control" id="inputGroupFile02">
+                  </div>
+                  <div class="input-group-append">
+                    <button type="submit" class="input-group-text" id="">Cari</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr class="table-light">
+                <th>No</th>
+                <th>masalah</th>
+                <th>jenis naskah</th>
+                <th>pejabat penanda tngan</th>
+                <th>jumlah berkas</th>
+                <th>tingkat perkembangan</th>
+                <th>uploader</th>
+                <th>aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% archive.map(function(obj , i) { %>
+                <tr class="table-light">
+                  <td><%= i + offset + 1%></td>
+                  <td><%= obj.masalah%></td>
+                  <td><%= obj.jenis_naskah%></td>
+                  <td><%= obj.pejabat_penanda_tangan%></td>
+                  <td><%= obj.jumlah_berkas%></td>
+                  <td><%= obj.tingkat_perkembangan%></td>
+                  <td><%= obj.user_id.username%></td>
+                  <td>
+                    <a href="#" data-id="/arsip/<%= obj._id%>" class="btn btn-primary btn-sm btn-modal">
+                      <span class="ion-search" data-glyph="magnifying-glass"></span>
+                    </a>
+                    <% if (user) { %>
+                      <% if (obj.user_id.username === user.username) { %>
+                        <a href="/arsip/edit/<%= obj._id%>" class="btn btn-secondary btn-sm">
+                          <span class='ion-edit'></span>
+                        </a>
+                        <a href="" class="btn btn-danger btn-sm">
+                          <span class='ion-close-circled'></span>
+                        </a>
+                      <% } %>
+                    <% } %>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <div>
+            <% if (!isSearch)  {%>
+            <%- paginator %>
+            <%= pageStart > 0 %>
+          <!--     <ul class="pagination">
+                <% if (pageStart > 1) { %>
+                  <li class="page-item">
+                    <a class="page-link" href="arsip/?page=<%= pageStart - 1%>">&laquo;</a>
+                  </li>
+                <% } %>
+                <% for (var i = pageStart; i < lastPage; i ++)  {%>
+                  <li class="page-item <%= i === page ? "active" : "" %>">
+                    <a href="/arsip?page=<%= i %>" class="page-link"> <%= i %> </a>
+                  </li>
+                <% } %>
+                <li class="page-item">
+                  <a class="page-link" href="#">&raquo;</a>
+                </li>
+              </ul> -->
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <% if (user) { %>
+        <div class="row">
+          <div class="col-md-4">
+            <form action="/archive" method='post' enctype="multipart/form-data">
+              <div class="form-group">
+                <h5>Upload Arsip</h5>
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input type="file" name='archive' accept=".csv" class="custom-file-input" id="inputGroupFile02">
+                    <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button type="submit" class="input-group-text" id="">Upload</button>
+                  </div>
+                </div>
+              </div> 
+            </form> 
+          </div>
+          <div class="col-md-4">
+            <h5>Isi data manual</h5>
+            <a href='/arsip/add' class="btn btn-success">Tambah</a>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+    <div class="ornament-city"></div>
+    <div class="section fp-auto-height n-footer fix">
+      &copy; copyright dokumen arsip jakarta
+    </div>
+  
+  </div>
+
+  <!-- additional script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.0/granim.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
+  <script src='js/home.js'></script>
+  <script src='js/main.js'></script>
+  <script>
+    $(document).ready(function() {
+
+      $('.btn-modal').on('click' , function() {
+        $('.modal').toggleClass('active')
+        var url = $(this).data('id')
+        var base = window.location.origin + url
+        $('.jenis-naskah--text').text('--------------')
+        $('.jumlah-berkas--text').text('--------------')
+        $('.masalah--text').text('--------------')
+        $('.pejabat-penanda-tangan--text').text('--------------')
+        $('.tingkat-perkembangan--text').text('--------------')
+        console.log(base)
+        $.ajax({
+          url: base ,
+          dataType: 'json' ,
+          success: function(data) {
+            console.log(data)
+            $('.jenis-naskah--text').text(data.jenis_naskah)
+            $('.jumlah-berkas--text').text(data.jumlah_berkas)
+            $('.masalah--text').text(data.masalah)
+            $('.pejabat-penanda-tangan--text').text(data.pejabat_penanda_tangan)
+            $('.tingkat-perkembangan--text').text(data.tingkat_perkembangan)
+          } ,
+          error: function(req , status , error) {
+            console.log(req)
+          }
+        })
+      })
+
+      $('.close').on('click' , function() {
+        $('.modal').removeClass('active')
+      })
+    })
+  </script>
+</body>
+</html>

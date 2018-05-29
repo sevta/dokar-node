@@ -1,0 +1,96 @@
+body {
+  position: relative;
+}
+
+.col-content .title {
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+  font-family: Maven Pro;
+}
+
+.col-content .content {
+  width: 623px;
+  height: 115px;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 25px;
+  font-size: 14px;
+  margin-top: 15px;
+  color: #FEFEFE;
+}
+
+.container-center {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  margin-top: 0px;
+}
+
+.container-center .container-list--regulasi {
+  position: relative;
+  width: auto;
+  height: 100%;
+  margin-right: 70px;
+}
+
+.container-center .container-list--regulasi .regulasi-list {
+  width: 290px;
+  height: 36px;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  color: #426689;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container-center .container-list--regulasi .regulasi-list .btn-plus {
+  width: 37px;
+  height: 100%;
+  background: #426689;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.container-center .container-list--regulasi .regulasi-list .btn-plus::before {
+  content: '';
+  width: 3px;
+  height: 13px;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.container-center .container-list--regulasi .regulasi-list .btn-plus::after {
+  content: '';
+  width: 13px;
+  height: 3px;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.container-center #pdf-container {
+  width: 570px;
+  height: 678px;
+  z-index: 10;
+  border: 5px solid #C5680B;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+}

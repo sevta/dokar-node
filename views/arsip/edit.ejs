@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include ../_partials/head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+    <link rel="stylesheet" href="../../stylesheets/regulasi/newregulasi.css">
+  <style>
+    .pdfobject-container { height: 500px;}
+    .pdfobject { border: 1px solid #666; }
+    .arsip {
+      padding-top: 60px;
+    }
+    .list-title {
+      margin-bottom: 0;
+      margin-top: 60px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div class="navbar-menu"></div>
+
+  <% include ../_partials/popup_login %>
+
+  <section id="regulasi arsip">
+    <% include ../_partials/navbar %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form action='/arsip/add' method='post'>
+            <fieldset>
+              <!-- <legend>Legend</legend> -->
+              <div class="list-title">Edit Arsip</div>
+              <hr>
+              <div class="form-group">
+                <label for="masalah">Masalah</label>
+                <textarea class="form-control" id="masalah" rows="3" name='masalah' value="<%= arsip.masalah %>"></textarea>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="tgl-surat">No tgl surat</label>
+                <input type="text" class="form-control" placeholder="No tgl surat" id="tgl-surat" name='tgl_surat' value="<% arsip.tgl_surat %>">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="jenis-naskah">Jenis naskah</label>
+                <input type="text" class="form-control" id="jenis-naskah" placeholder="Jenis naskah" name='jenis_naskah' value="<% arsip.jenis_naskah %>">
+              </div>
+              <div class="form-group">
+                <label for="pejabat-penanda-tangan">Pejabat penanda tangan</label>
+                <input type="text" class="form-control" id="pejabat-penanda-tangan" name="pejabat_penanda_tangan" placeholder="Pejabat penanda tangan">
+                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+              </div>
+              <div class="form-group">
+                <label for="jumlah-berkas">Jumlah berkas</label>
+                <input type="number" class="form-control" id="jumlah-berkas" name="jumlah_berkas" placeholder="Jumlah berkas">
+                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+              </div>
+              <div class="form-group">
+                <label for="tingakat-perkembangan">Tingkat perkembangan</label>
+               <select class="form-control" id="tingkat-perkembangan" name="tingkat_perkembangan">
+                  <option value='foto copy'>foto copy</option>
+                  <option value='asli'>asli</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ornament-city"></div>
+    <div class="section fp-auto-height n-footer fix">
+      &copy; copyright dokumen arsip jakarta
+    </div>
+  
+  </div>
+
+  <!-- additional script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.0/granim.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js'></script>
+  <script src='js/home.js'></script>
+  <script src='../js/main.js'></script>
+  <script>
+    $(document).ready(function() {
+      $('#tgl-surat').datepicker()
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900");
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,700,800,900");
+body {
+  background: #F1F1F1;
+  position: relative;
+}
+
+.list-title {
+  font-family: Maven Pro;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 38px;
+  font-size: 36px;
+  color: #696969;
+  margin-bottom: 40px;
+}
+
+.pdf-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 49;
+  background: rgba(42, 54, 73, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease;
+}
+
+.pdf-container.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-login {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(52, 63, 81, 0.95);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease;
+}
+
+.popup-login.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-login--center {
+  width: 283px;
+  height: 314px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.popup-login--center .login--text {
+  color: white;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 78px;
+  font-size: 64px;
+}
+
+.popup-login--center .login--subtext {
+  color: white;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.popup-login--center .login--input {
+  width: 100%;
+  height: 41px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.14);
+  border-radius: 32px;
+  border: none;
+  padding-left: 25px;
+  margin-top: 15px;
+}
+
+.popup-login--center .login--input:focus {
+  outline: none;
+}
+
+.popup-login--center .btn-login {
+  width: 107px;
+  height: 41px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  background: #FF8206;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.14);
+  border-radius: 32px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.n-navbar {
+  width: 100%;
+  height: 82px;
+  left: 0;
+  background: #FB6900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 60px;
+  box-shadow: inset 0px 4px 10px rgba(211, 88, 0, 0.5);
+}
+
+.n-navbar .logo {
+  width: 113px;
+  height: 60px;
+  background: #333;
+  background: url("../../img/dki.png") no-repeat;
+  background-size: cover;
+  margin-left: -30px;
+}
+
+.n-navbar .burger-menu {
+  width: 24px;
+  height: 20px;
+  display: flex;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  left: 180px;
+  cursor: pointer;
+}
+
+.n-navbar .burger-menu .line {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+.n-navbar .navbar-list .login-nav {
+  background: #426689;
+  border-radius: 20px;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+
+.n-navbar .navbar-list a {
+  margin-right: 20px;
+  color: white;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.n-navbar .navbar-list a:last-child {
+  margin-right: 0px;
+}
+
+#regulasi {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-bottom: 30px;
+  transition: all .4s ease;
+}
+
+#regulasi.arsip {
+  padding-top: 60px;
+}
+
+#regulasi .container-list {
+  width: 657px;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+#regulasi .container-list .list-subtitle {
+  display: none;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 26px;
+  font-size: 16px;
+  margin-top: 20px;
+  color: #9C9C9C;
+  margin-bottom: 40px;
+}
+
+#regulasi .container-list .list-box {
+  width: 100%;
+  height: 56px;
+  background: white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  border: solid #EEEDED 2px;
+  transition: all .1s ease;
+  overflow: hidden;
+}
+
+#regulasi .container-list .list-box--bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #7EE0FF;
+  transition: all .4s ease;
+}
+
+#regulasi .container-list .list-box--text {
+  font-family: Nunito Sans;
+  font-style: normal;
+  line-height: 22px;
+  font-size: 14px;
+  color: #686F70;
+  padding-left: 50px;
+  font-weight: 600;
+}
+
+#regulasi .container-list .list-box:hover {
+  box-shadow: 6px 6px 20px rgba(51, 51, 51, 0.1);
+}
+
+#regulasi .container-list .list-box:hover .list-box--bullet {
+  width: 10px;
+  height: 100%;
+  margin-left: -30px;
+  border-radius: 0;
+}
+
+.ornament-city {
+  width: 100%;
+  height: 396px;
+  background: url("../../img/city-grey.svg");
+  position: absolute;
+  bottom: -10px;
+  z-index: -1;
+}
+
+.n-footer {
+  width: 100%;
+  padding: 15px 60px;
+  background: #E8E8E8;
+  color: #426689;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  z-index: 40;
+}
+
+.n-footer.fix {
+  position: relative;
+}

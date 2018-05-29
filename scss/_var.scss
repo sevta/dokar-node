@@ -1,0 +1,99 @@
+
+// --- Color
+$primary-color: #FFA842;
+// $primary-color: #5ED1FF;
+$primary-color-rgb: rgba(229,213,237, 0.6);
+$secondary-color: #426689;
+$third_color: #FF8206;
+$tester-color: rgba(241, 196, 15, 0.4);
+$border-color: #a6a0aa;
+$pink: #f35ebb;
+
+// --- Font
+$font-type: Open Sans;
+
+// --- Font Sizing
+$font-primary-size: 20px;
+$font-heading-size: 36px;
+$font-button-size: 14px;
+$font-content: 14px;
+$font-weight-md: 600;
+// --- Font Color
+$font-color-primary: white;
+$font-color-secondary: #d0aa23;
+
+// --- Global var
+$percent: 0.8;
+$scale: 1.4;
+$default-transition: all .2s ease;
+$border-radius: 10px;
+
+// --- Mixins
+@mixin center-horizontal {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+@mixin font-heading($color) {
+  font-family: open sans;
+  font-size: 20px;
+  color: $color;
+}
+
+@mixin center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+}
+
+@mixin container {
+  width: 1200px;
+  height: auto;
+  padding: 10px;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin size($width , $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin background($url) {
+  background-image: url($url);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+@mixin primary-rgba($alpha) {
+  background: rgba(89, 42, 134, $alpha);
+}
+
+@mixin secondary-rgba($alpha) {
+  background: rgba(45, 60, 81, $alpha);
+}
+
+@mixin sizecalc($width , $height) {
+  width: calc(#{$width} * #{$percent});
+  height: calc(#{$height} * #{$percent});
+}
+
+@mixin backgroundColor1 {
+  background: #e5e5e5;
+  background: -moz-radial-gradient(center, ellipse cover, #e5e5e5 70%, #cab0d3 99%);
+  background: -webkit-radial-gradient(center, ellipse cover, #e5e5e5 70%,#cab0d3 99%);
+  background: radial-gradient(ellipse at center, #e5e5e5 70%,#cab0d3 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#cab0d3',GradientType=1 );
+}
