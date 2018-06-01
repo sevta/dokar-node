@@ -28,38 +28,38 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form action='/arsip/add' method='post'>
+          <form action='/updatearsip/<%= arsip._id %>' method='post'>
             <fieldset>
               <!-- <legend>Legend</legend> -->
               <div class="list-title">Edit Arsip</div>
               <hr>
               <div class="form-group">
                 <label for="masalah">Masalah</label>
-                <textarea class="form-control" id="masalah" rows="3" name='masalah' value="<%= arsip.masalah %>"></textarea>
+                <textarea class="form-control" id="masalah" rows="3" name='masalah'><%= arsip.masalah %></textarea>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
                 <label for="tgl-surat">No tgl surat</label>
-                <input type="text" class="form-control" placeholder="No tgl surat" id="tgl-surat" name='tgl_surat' value="<% arsip.tgl_surat %>">
+                <input type="text" class="form-control" placeholder="No tgl surat" id="tgl-surat" name='tgl_surat' value="<%= arsip.no_tgl_surat %>">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
                 <label for="jenis-naskah">Jenis naskah</label>
-                <input type="text" class="form-control" id="jenis-naskah" placeholder="Jenis naskah" name='jenis_naskah' value="<% arsip.jenis_naskah %>">
+                <input type="text" class="form-control" id="jenis-naskah" placeholder="Jenis naskah" name='jenis_naskah' value="<%= arsip.jenis_naskah %>">
               </div>
               <div class="form-group">
                 <label for="pejabat-penanda-tangan">Pejabat penanda tangan</label>
-                <input type="text" class="form-control" id="pejabat-penanda-tangan" name="pejabat_penanda_tangan" placeholder="Pejabat penanda tangan">
+                <input type="text" class="form-control" id="pejabat-penanda-tangan" name="pejabat_penanda_tangan" placeholder="Pejabat penanda tangan" value="<%= arsip.pejabat_penanda_tangan %>">
                 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
               </div>
               <div class="form-group">
                 <label for="jumlah-berkas">Jumlah berkas</label>
-                <input type="number" class="form-control" id="jumlah-berkas" name="jumlah_berkas" placeholder="Jumlah berkas">
+                <input type="number" class="form-control" id="jumlah-berkas" name="jumlah_berkas" placeholder="Jumlah berkas" value="<%= arsip.jumlah_berkas %>">
                 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
               </div>
               <div class="form-group">
                 <label for="tingakat-perkembangan">Tingkat perkembangan</label>
-               <select class="form-control" id="tingkat-perkembangan" name="tingkat_perkembangan">
+               <select class="form-control" id="tingkat-perkembangan" name="tingkat_perkembangan" data-selected="<%= arsip.tingkat_perkembangan %>">
                   <option value='foto copy'>foto copy</option>
                   <option value='asli'>asli</option>
                 </select>
@@ -96,6 +96,10 @@
   <script>
     $(document).ready(function() {
       $('#tgl-surat').datepicker()
+      console.log()
+      var selected = $('#tingkat-perkembangan').data('selected')
+      console.log(selected)
+      $('#tingkat-perkembangan').val(selected)
     })
   </script>
 </body>

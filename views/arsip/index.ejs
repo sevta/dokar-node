@@ -3,8 +3,11 @@
 <head>
 
     <% include ../_partials/head %>
+    <!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="./stylesheets/regulasi/newregulasi.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
   <style>
     .pdfobject-container { height: 500px;}
     .pdfobject { border: 1px solid #666; }
@@ -68,11 +71,11 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="list-title">Daftar Arsip</div>
-          <div class="search-form">
+      <!--     <div class="search-form">
             <form action="/arsip" method='get'>
               <div class="form-group">
                 <div class="input-group mb-3">
@@ -85,12 +88,13 @@
                 </div>
               </div>
             </form>
-          </div>
-          <table class="table table-hover">
+          </div> -->
+          <table class="table table-striped" id="arsip-table">
             <thead>
               <tr class="table-light">
                 <th>No</th>
                 <th>masalah</th>
+                <th>tgl surat</th>
                 <th>jenis naskah</th>
                 <th>pejabat penanda tngan</th>
                 <th>jumlah berkas</th>
@@ -104,6 +108,7 @@
                 <tr class="table-light">
                   <td><%= i + offset + 1%></td>
                   <td><%= obj.masalah%></td>
+                  <td><%= obj.no_tgl_surat%></td>
                   <td><%= obj.jenis_naskah%></td>
                   <td><%= obj.pejabat_penanda_tangan%></td>
                   <td><%= obj.jumlah_berkas%></td>
@@ -118,9 +123,12 @@
                         <a href="/arsip/edit/<%= obj._id%>" class="btn btn-secondary btn-sm">
                           <span class='ion-edit'></span>
                         </a>
-                        <a href="" class="btn btn-danger btn-sm">
-                          <span class='ion-close-circled'></span>
-                        </a>
+                        <form action="/deletearsip" method='post' id="form-delete">
+                          <input type="hidden" name='_id' value='<%= obj._id %>'>
+                          <button type="submit" class="btn btn-danger btn-sm btn-delete" oclick='delete'>
+                            <span class='ion-close-circled'></span>
+                          </button>
+                        </form>
                       <% } %>
                     <% } %>
                   </td>
@@ -129,9 +137,11 @@
             </tbody>
           </table>
           <div>
+            <p class='isSearch' style="visibility: hidden;"><%= isSearch %></p>
+            <% if (isSearch) { %>
+              <p class='<%= isSearch ? "search-val" : "search-val-none"%>' style="visibility: hidden;"><%= search %></p>
+            <% } %>
             <% if (!isSearch)  {%>
-            <%- paginator %>
-            <%= pageStart > 0 %>
           <!--     <ul class="pagination">
                 <% if (pageStart > 1) { %>
                   <li class="page-item">
@@ -188,21 +198,60 @@
 
   <!-- additional script -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.0/granim.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
-  <script src='js/home.js'></script>
   <script src='js/main.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+  <script src='http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+  <script src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js'></script>
   <script>
     $(document).ready(function() {
+      
+      (function() {
+        var url = window.location.origin + '/arsipdata'
+        return fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+          })
+      }())
+
+      var table = $('#arsip-table').DataTable()
+      var isSearch = $('.isSearch').html()
+      // console.log(isSearch) 
+      if (isSearch) {
+        var search_val = $('.search-val').html()
+        table.search(search_val).draw()
+      }
+
+      $('.btn-delete').click(function(event) {
+        event.preventDefault()
+        var form = event.target.form
+        var id = $(this).data('id')
+        var url = window.location.origin  + `/delete/${id}`
+        var $this = $(this)
+        swal({
+          title: "Yakin ?",
+          text: "Menghapus file tidak bisa dikembalikan",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Hapus!",
+          cancelButtonText: "Tidak!",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm) {
+          if (isConfirm) {
+            swal("Deleted!", "File kamu telah dihapus.", "success");
+            form.submit()
+          } else {
+            swal("Cancelled", "Your imaginary file is safe :)", "error");
+          }
+        });
+      })
 
       $('.btn-modal').on('click' , function() {
+        console.log('modal clicked')
         $('.modal').toggleClass('active')
         var url = $(this).data('id')
         var base = window.location.origin + url

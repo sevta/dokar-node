@@ -1,0 +1,29 @@
+<tbody>
+  <% archive.map(function(obj , i) { %>
+    <tr class="table-light">
+      <td><%= i + offset + 1%></td>
+      <td><%= obj.masalah%></td>
+      <td><%= obj.no_tgl_surat%></td>
+      <td><%= obj.jenis_naskah%></td>
+      <td><%= obj.pejabat_penanda_tangan%></td>
+      <td><%= obj.jumlah_berkas%></td>
+      <td><%= obj.tingkat_perkembangan%></td>
+      <td><%= obj.user_id.username%></td>
+      <td>
+        <a href="#" data-id="/arsip/<%= obj._id%>" class="btn btn-primary btn-sm btn-modal">
+          <span class="ion-search" data-glyph="magnifying-glass"></span>
+        </a>
+        <% if (user) { %>
+          <% if (obj.user_id.username === user.username) { %>
+            <a href="/arsip/edit/<%= obj._id%>" class="btn btn-secondary btn-sm">
+              <span class='ion-edit'></span>
+            </a>
+            <a href="" class="btn btn-danger btn-sm">
+              <span class='ion-close-circled'></span>
+            </a>
+          <% } %>
+        <% } %>
+      </td>
+    </tr>
+  <% }) %>
+</tbody>

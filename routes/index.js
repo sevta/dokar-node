@@ -12,11 +12,12 @@ const upload_archive = multer({ inMemory: true })
 const router = express.Router();
 
 function authCheck(req , res , next) {
-  if (req.session.user) {
-    next()
-  } else {
-    res.redirect('/login')
-  }
+  next()
+  // if (req.session.user) {
+  //   next()
+  // } else {
+  //   res.redirect('/')
+  // }
 } 
 
 // backup old
@@ -31,7 +32,8 @@ router.get('/login' , function(req , res , next) {
   }
 })
 router.get('/arsip' , authCheck , userController.arsip)
-router.get('/tambaharsip' , authCheck , userController.addArsipView)
+// router.get('/tambaharsip' , authCheck , userController.addArsipView)
+router.get('/arsip/add' , authCheck , userController.addArsipView)
 router.get('/regulasi' , authCheck , userController.regulasi)
 router.get('/profile' , authCheck , userController.profile)
 router.get('/arsip/(:id)' , authCheck , userController.viewArsip)
@@ -39,12 +41,17 @@ router.get('/arsip/edit/(:id)' , authCheck , userController.editArsip)
 router.get('/smep' , authCheck , userController.smep)
 router.get('/admin' , authCheck , adminController.index)
 router.get('/logout' , authCheck , userController.logout)
+router.get('/search' , authCheck , userController.search)
+router.get('/arsipdata' , authCheck , userController.arsipData)
+
+router.post('/deletearsip' , userController.deleteData)
 
 router.post('/login' , userController.login)
 router.post('/arsip/add' , userController.addArsip)
 router.post('/csv' , upload.single('csv') , adminController.handleCsv)
 router.post('/seedusers' , adminController.seedUsers)
 router.post('/archive' , upload_archive.single('archive') , adminController.handleArchive)
+router.post('/updatearsip/(:id)' , userController.updatearsip)
 
 
 

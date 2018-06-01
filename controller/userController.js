@@ -4,6 +4,7 @@ import Archive from '../models/archive'
 var pagination = require('pagination');
 
 var session
+var query_search 
 
 export default {
   index: (req , res , next) => {  
@@ -20,7 +21,7 @@ export default {
             if (err) {
               console.log(err)
             } else {
-              res.render('home', {
+              res.render('index', {
                 title: 'Express' ,
                 user: session ,
                 user_length: user.length ,
@@ -41,20 +42,24 @@ export default {
     var pageStart = page
     var lastPage = 4 + pageStart
     var isSearch = false
+    console.log(query_search)
     User.find({} , function(err , user) {
       if (err) {
         console.log(err)
       } else {
         if (req.query.search) {
           isSearch = true
+          var search = req.query.search
           console.log('Search' , req.query.search)
-          Archive.find({ $text: {$search: req.query.search} })
+          // add this if you want search value from the input search
+          // $text: {$search: req.query.search}
+          Archive.find({})
             .populate('user_id') 
             .sort([['updatedAt', 'descending']])
             .exec(function(err , archive) {
               Archive.count().exec(function(err , count) {
                 console.log(count , page)
-                return res.render('_admin/arsip/index' , {
+                return res.render('arsip/index' , {
                   user: session ,
                   archive ,
                   page ,
@@ -62,8 +67,11 @@ export default {
                   pageStart ,
                   lastPage ,
                   isSearch ,
-                  offset 
+                  offset ,
+                  search ,
+                  query_search
                 })
+                query_search = null
               })
             })
         } else {
@@ -108,7 +116,7 @@ export default {
                         return html;
                     }
                 });
-                return res.render('_admin/arsip/index' , {
+                return res.render('arsip/index' , {
                   user: session ,
                   archive ,
                   page ,
@@ -117,17 +125,36 @@ export default {
                   lastPage ,
                   isSearch ,
                   offset ,
+                  query_search ,
                   paginator: bootstrapPaginator.render()
                 })
+                query_search = null
               })
             })
           }
         }
     })
   } ,
+  arsipData: (req , res , next) => {
+    Archive.find({} , {
+        _id: '' ,
+        masalah: '' ,
+        no_tgl_surat: '' ,
+        jenis_naskah: '' ,
+        pejabat_penanda_tangan: '' ,
+        tingkat_perkembangan: '' ,
+        user_id: ''
+      })
+      .populate('user_id' , 'username')
+      .exec((err , result) => res.json(result))
+  } ,
+  search: (req , res , next) => {
+    query_search = req.query.search
+    res.redirect('/arsip')
+  } ,
   addArsipView: (req , res , next) => {
     if (req.session.user) {
-      res.render('_admin/arsip/add' , {
+      res.render('arsip/add' , {
         user: session
       })
     } else {
@@ -138,7 +165,7 @@ export default {
     if (req.body !== '') {
       var newArchive = new Archive()
       newArchive.masalah = req.body.masalah
-      newArchive.tgl_surat = req.body.tgl_surat
+      newArchive.no_tgl_surat = req.body.tgl_surat
       newArchive.jenis_naskah = req.body.jenis_naskah 
       newArchive.pejabat_penanda_tangan = req.body.pejabat_penanda_tangan
       newArchive.jumlah_berkas = req.body.jumlah_berkas
@@ -187,13 +214,44 @@ export default {
       res.redirect('/')
     }
   } ,
+  updatearsip: (req , res , next) => {
+    var id = req.params.id
+    var query = {
+     masalah: req.body.masalah ,
+     no_tgl_surat: req.body.tgl_surat ,
+     jenis_naskah: req.body.jenis_naskah  ,
+     pejabat_penanda_tangan: req.body.pejabat_penanda_tangan ,
+     jumlah_berkas: req.body.jumlah_berkas ,
+     tingkat_perkembangan: req.body.tingkat_perkembangan  ,
+     user_id: req.session.user._id
+    }
+    Archive.findByIdAndUpdate(id , query , (err , result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(result)
+        res.redirect('/arsip')
+      }
+    })
+  } ,
+  deleteData: (req , res , next) => {
+    var id = req.body._id
+    Archive.findByIdAndRemove(id , (err , result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(result)
+        res.redirect('/arsip')
+      }
+    })
+  } ,
   regulasi: (req , res , next) => {
-    res.render('_admin/regulasi/index' , {
+    res.render('regulasi/regulasi' , {
       user: session
     })
   } ,
   smep: (req , res , next) => {
-    res.render('_admin/smep/index' , {
+    res.render('smep/index' , {
       user: session
     })
   } ,
@@ -232,6 +290,6 @@ export default {
   logout: (req , res , next) => {
     req.session.destroy()
     session = null
-    res.redirect('/login')
+    res.redirect('/')
   }
 }
