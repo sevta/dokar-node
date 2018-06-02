@@ -37,6 +37,7 @@
       $('.navbar-list').toggleClass('active')
       $('.navbar-menu').toggleClass('active')
       $('#n-home').toggleClass('active')
+      $('.n-navbar').toggleClass('active')
     })
 
     $('.list-box').on('click' , function() {

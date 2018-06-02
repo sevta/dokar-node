@@ -121,7 +121,59 @@ body {
      -webkit-transform: translateX(-1100px);
    }
 }
-
+.navbar-list {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+  z-index: 60;
+  transform: translateY(0px);
+  transition: all .3s ease;
+  &.hide {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  .login-nav {
+    background: $secondary-color;
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-weight: bold;
+  }
+  a {
+    margin-right: 20px;
+    color: white;
+    // color: $secondary-color;
+    text-transform: capitalize;
+    font-size: 14px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+  @media (max-width: 1024px) {
+    visibility: hidden;
+    opacity: 0;
+    @include size(100% , 100%);
+    background: $secondary-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: all .4s ease;
+    &.active {
+      transform: translateX(0);
+      visibility: visible;
+      opacity: 1;
+    }
+    a {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+  }
+}
 .navbar-menu {
   // display: none;
   @include size(300px , 100vh);
@@ -154,6 +206,13 @@ body {
   &.hide {
     transform: translateY(-100px);
     opacity: 0;
+  }
+  &.active {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    z-index: 70;
+    background: $secondary-color;
   }
   @media (max-width: 1024px) {
     height: 62px;
@@ -193,49 +252,6 @@ body {
     @media (max-width: 1024px) {
       display: flex;
       &.active { z-index: 70; }
-    }
-  }
-  .navbar-list {
-    .login-nav {
-      background: $secondary-color;
-      border-radius: 20px;
-      padding: 6px 10px;
-      font-weight: bold;
-    }
-    a {
-      margin-right: 20px;
-      color: white;
-      // color: $secondary-color;
-      text-transform: capitalize;
-      font-size: 14px;
-      &:last-child {
-        margin-right: 0px;
-      }
-    }
-    @media (max-width: 1024px) {
-      visibility: hidden;
-      opacity: 0;
-      @include size(100% , 100%);
-      background: $secondary-color;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 60;
-      transform: translateY(-100%);
-      transition: all .4s ease;
-      &.active {
-        transform: translateY(0);
-        visibility: visible;
-        opacity: 1;
-      }
-      a {
-        font-size: 18px;
-        margin-bottom: 30px;
-      }
     }
   }
 }
@@ -371,6 +387,17 @@ body {
       @include center;
       top: 44%;
       // background: white;
+      @media (max-width: 1024px) {
+        width: 100%;
+        height: auto;
+      }
+      @media (max-width: 380px) {
+        transform: translate(-50%, -50%) scale(.8);
+      }
+      @media (max-width: 340px) {
+        transform: translate(-50%, -47%) scale(.72);
+        width: 130%;
+      }
       .title {
         font-family: Maven Pro;
         font-style: normal;
@@ -379,6 +406,9 @@ body {
         font-size: 36px;
         text-align: center;
         color: #FFFFFF;
+        @media (max-width: 1024px) {
+          font-size: 23px;
+        }
       }
       .sub-title {
         font-family: Nunito Sans;
@@ -389,6 +419,12 @@ body {
         text-align: center;
         color: white;
         margin-top: 30px;
+        @media (max-width: 1024px) {
+          font-size: 14px;
+          line-height: 22px;
+          margin-top: 20px;
+          padding: 10px;
+        }
       }
       .list-container {
         width: 817px;
@@ -402,12 +438,22 @@ body {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+        @media (max-width: 1024px) {
+          width: 100%;
+          position: relative;
+          bottom: 0px;
+          margin-top: 30px;
+        }
         .col {
           flex: 70px;
           // height: 150px;
           background: white;
           @include flex-center;
           justify-content: flex-start;
+          @media (max-width: 1024px) {
+            flex: 100%;
+            padding: 10px;
+          }
           &--text {
             font-family: Nunito Sans;
             font-style: normal;
@@ -475,6 +521,17 @@ body {
       // background: white;
       @include center;
       top: 30%;
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+      @media (max-width: 380px) {
+        transform: translate(-50%, -50%) scale(.8);
+        width: 120%;
+      }
+      @media (max-width: 340px) {
+        transform: translate(-50%, -47%) scale(.72);
+        width: 130%;
+      }
       &_title {
         font-family: Maven Pro;
         font-style: normal;
@@ -483,6 +540,9 @@ body {
         font-size: 36px;
         text-align: center;
         color: white;
+        @media (max-width: 1024px) {
+          font-size: 24px;
+        }
       }
       .slider-text {
         margin-top: 30px;

@@ -5,28 +5,27 @@
       <span class="line"></span>
       <span class="line"></span>
     </div>    
-    <div class="navbar-list">
-      <a href="/">beranda</a>
-      <% if (user) { %>
-        <a href="/profile">Profile</a>
-      <% } %>
-      <a href="/smep">smep</a>
-      <a href="/regulasi">regulasi kearsipan</a>
-      <a href='/arsip'>Daftar Arsip</a>
-      <a href="#">tutorial</a>
-      <a href="#">intruksi kerja</a>
-      <% if (!user) { %>
-        <a href="#" class='login-nav'>Login</a>
-      <% } %>
-      <% if (user) { %>
-        <% if (user.status ==  1) {%>
-          <a href="/admin">admin</a>
-        <% } %>
-        <a href='/logout'>logout</a>
-      <% } %>
-    </div>
   </div>
-
+  <div class="navbar-list">
+    <a href="/">beranda</a>
+    <% if (user) { %>
+      <a href="/profile">Profile</a>
+    <% } %>
+    <a href="/smep">smep</a>
+    <a href="/regulasi">regulasi kearsipan</a>
+    <a href='/arsip'>Daftar Arsip</a>
+    <a href="#">tutorial</a>
+    <a href="#">intruksi kerja</a>
+    <% if (!user) { %>
+      <a href="#" class='login-nav'>Login</a>
+    <% } %>
+    <% if (user) { %>
+      <% if (user.status ==  1) {%>
+        <a href="/admin">admin</a>
+      <% } %>
+      <a href='/logout'>logout</a>
+    <% } %>
+  </div>
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-transparent" style="border: none;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
