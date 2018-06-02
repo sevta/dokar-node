@@ -370,6 +370,7 @@ body {
 }
 
 #n-home .section3 {
+  display: none;
   background: #2A3649;
 }
 

@@ -39,7 +39,7 @@
   <section id="regulasi arsip">
     <% include ../_partials/navbar %>
     
-    <div class="modal">
+    <div class="modal fade" id="modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -65,7 +65,7 @@
             <p class="tingkat-perkembangan--text">...</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -114,8 +114,8 @@
                   <td><%= obj.jumlah_berkas%></td>
                   <td><%= obj.tingkat_perkembangan%></td>
                   <td><%= obj.user_id.username%></td>
-                  <td>
-                    <a href="#" data-id="/arsip/<%= obj._id%>" class="btn btn-primary btn-sm btn-modal">
+                  <td style="display: flex;">
+                    <a href='#' data-target='#modal' data-toggle='modal' data-id="/arsip/<%= obj._id%>" class="btn btn-primary btn-sm btn-modal">
                       <span class="ion-search" data-glyph="magnifying-glass"></span>
                     </a>
                     <% if (user) { %>
@@ -125,7 +125,7 @@
                         </a>
                         <form action="/deletearsip" method='post' id="form-delete">
                           <input type="hidden" name='_id' value='<%= obj._id %>'>
-                          <button type="submit" class="btn btn-danger btn-sm btn-delete" oclick='delete'>
+                          <button type="submit" class="btn btn-danger btn-sm btn-delete">
                             <span class='ion-close-circled'></span>
                           </button>
                         </form>
@@ -203,6 +203,7 @@
   <script src='http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
   <script src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
   <script>
     $(document).ready(function() {
       
@@ -216,9 +217,8 @@
       }())
 
       var table = $('#arsip-table').DataTable()
-      var isSearch = $('.isSearch').html()
-      // console.log(isSearch) 
-      if (isSearch) {
+      var isSearch = $('.isSearch').html() 
+      if (isSearch === 'true') {
         var search_val = $('.search-val').html()
         table.search(search_val).draw()
       }
@@ -250,10 +250,8 @@
         });
       })
 
-      $('.btn-modal').on('click' , function() {
-        console.log('modal clicked')
-        $('.modal').toggleClass('active')
-        var url = $(this).data('id')
+      $('#modal').on('show.bs.modal', function(e) {
+        var url = $(e.relatedTarget).data('id')
         var base = window.location.origin + url
         $('.jenis-naskah--text').text('--------------')
         $('.jumlah-berkas--text').text('--------------')
@@ -276,7 +274,13 @@
             console.log(req)
           }
         })
-      })
+      }); 
+
+      // $('.btn-modal').on('click' , function() {
+      //   console.log('modal clicked')
+      //   $('.modal').toggleClass('active')
+
+      // })
 
       $('.close').on('click' , function() {
         $('.modal').removeClass('active')
