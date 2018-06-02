@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="./stylesheets/regulasi/newregulasi.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap4.min.css">
   <style>
     .pdfobject-container { height: 500px;}
     .pdfobject { border: 1px solid #666; }
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate {
+      display: flex;
+      justify-content: center;
+    }
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+      margin: 22px 0;
+    }
+    .dtr-data {
+      display: flex !important;
+    }
     .arsip {
       padding-top: 60px;
-    }
-    .list-title {
-      margin-bottom: 40px;
-      margin-top: 60px;
     }
     .modal {
       transition: all .4s ease;
@@ -36,9 +43,8 @@
 
   <% include ../_partials/popup_login %>
 
-  <section id="regulasi arsip">
-    <% include ../_partials/navbar %>
-    
+  <% include ../_partials/navbar %>
+  <section id="regulasi-arsip">    
     <div class="modal fade" id="modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -89,17 +95,18 @@
               </div>
             </form>
           </div> -->
-          <table class="table table-striped" id="arsip-table">
+          <table class="table table-striped dt-responsive nowrap" id="arsip-table" style='width: 100%;'>
             <thead>
               <tr class="table-light">
                 <th>No</th>
                 <th>masalah</th>
+                <th>no surat</th>
                 <th>tgl surat</th>
                 <th>jenis naskah</th>
                 <th>pejabat penanda tngan</th>
                 <th>jumlah berkas</th>
                 <th>tingkat perkembangan</th>
-                <th>uploader</th>
+                <th>no boks</th>
                 <th>aksi</th>
               </tr>
             </thead>
@@ -107,13 +114,15 @@
               <% archive.map(function(obj , i) { %>
                 <tr class="table-light">
                   <td><%= i + offset + 1%></td>
-                  <td><%= obj.masalah%></td>
-                  <td><%= obj.no_tgl_surat%></td>
+                  <td style="width: 300px;"><%= obj.masalah%></td>
+                  <td><%= obj.nomor_surat%></td>
+                  <td><%= obj.tgl_surat%></td>
                   <td><%= obj.jenis_naskah%></td>
                   <td><%= obj.pejabat_penanda_tangan%></td>
                   <td><%= obj.jumlah_berkas%></td>
                   <td><%= obj.tingkat_perkembangan%></td>
-                  <td><%= obj.user_id.username%></td>
+                  <!-- <td><%= obj.user_id.username%></td> -->
+                  <td><%= obj.no_boks %></td>
                   <td style="display: flex;">
                     <a href='#' data-target='#modal' data-toggle='modal' data-id="/arsip/<%= obj._id%>" class="btn btn-primary btn-sm btn-modal">
                       <span class="ion-search" data-glyph="magnifying-glass"></span>
@@ -204,6 +213,8 @@
   <script src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
+  <script src='https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js'></script>
+  <script src='https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap4.min.js'></script>
   <script>
     $(document).ready(function() {
       
@@ -216,14 +227,14 @@
           })
       }())
 
-      var table = $('#arsip-table').DataTable()
+      var table = $('#arsip-table').DataTable({ responsive: true })
       var isSearch = $('.isSearch').html() 
       if (isSearch === 'true') {
         var search_val = $('.search-val').html()
         table.search(search_val).draw()
       }
 
-      $('.btn-delete').click(function(event) {
+      $('.btn-delete').on('click' , function(event) {
         event.preventDefault()
         var form = event.target.form
         var id = $(this).data('id')

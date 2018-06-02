@@ -1,8 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900");
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,700,800,900");
+#regulasi-arsip {
+  padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+  #regulasi-arsip {
+    padding-top: 80px;
+  }
+}
+
 body {
-  background: #F1F1F1;
+  width: 100%;
+  height: 100%;
   position: relative;
+  background: #F1F1F1;
 }
 
 .list-title {
@@ -13,6 +25,18 @@ body {
   font-size: 36px;
   color: #696969;
   margin-bottom: 40px;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .list-title {
+    font-size: 26px;
+    color: #696969;
+    padding-left: 4px;
+    margin: 0;
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
 }
 
 .pdf-container {
@@ -106,60 +130,7 @@ body {
 }
 
 .n-navbar {
-  width: 100%;
-  height: 82px;
-  left: 0;
   background: #FB6900;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 60px;
-  box-shadow: inset 0px 4px 10px rgba(211, 88, 0, 0.5);
-}
-
-.n-navbar .logo {
-  width: 113px;
-  height: 60px;
-  background: #333;
-  background: url("../../img/dki.png") no-repeat;
-  background-size: cover;
-  margin-left: -30px;
-}
-
-.n-navbar .burger-menu {
-  width: 24px;
-  height: 20px;
-  display: flex;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  left: 180px;
-  cursor: pointer;
-}
-
-.n-navbar .burger-menu .line {
-  width: 100%;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-}
-
-.n-navbar .navbar-list .login-nav {
-  background: #426689;
-  border-radius: 20px;
-  padding: 6px 10px;
-  font-weight: bold;
-}
-
-.n-navbar .navbar-list a {
-  margin-right: 20px;
-  color: white;
-  text-transform: capitalize;
-  font-size: 14px;
-}
-
-.n-navbar .navbar-list a:last-child {
-  margin-right: 0px;
 }
 
 #regulasi {
@@ -168,10 +139,19 @@ body {
   position: relative;
   margin-bottom: 30px;
   transition: all .4s ease;
+  padding-top: 60px;
 }
 
 #regulasi.arsip {
   padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+  #regulasi {
+    margin-bottom: 0px;
+    padding: 0px 10px;
+    padding-top: 95px;
+  }
 }
 
 #regulasi .container-list {
@@ -179,6 +159,13 @@ body {
   height: auto;
   margin: 0 auto;
   margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  #regulasi .container-list {
+    width: 100%;
+    margin-top: 0px;
+  }
 }
 
 #regulasi .container-list .list-subtitle {
@@ -208,12 +195,29 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  #regulasi .container-list .list-box {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 5px;
+  }
+}
+
 #regulasi .container-list .list-box--bullet {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: #7EE0FF;
   transition: all .4s ease;
+}
+
+@media (max-width: 768px) {
+  #regulasi .container-list .list-box--bullet {
+    width: 6px;
+    height: 6px;
+    margin-left: 5px;
+    position: absolute;
+  }
 }
 
 #regulasi .container-list .list-box--text {
@@ -224,6 +228,14 @@ body {
   color: #686F70;
   padding-left: 50px;
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  #regulasi .container-list .list-box--text {
+    width: 100%;
+    font-size: 12px;
+    padding-left: 25px;
+  }
 }
 
 #regulasi .container-list .list-box:hover {
@@ -246,6 +258,12 @@ body {
   z-index: -1;
 }
 
+@media (max-width: 768px) {
+  .ornament-city {
+    bottom: 0px;
+  }
+}
+
 .n-footer {
   width: 100%;
   padding: 15px 60px;
@@ -259,4 +277,11 @@ body {
 
 .n-footer.fix {
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .n-footer {
+    padding: 15px 30px;
+    text-align: center;
+  }
 }

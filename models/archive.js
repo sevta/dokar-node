@@ -6,7 +6,8 @@ const archiveSchema = new Schema({
   
   id: Number ,
   masalah: String, 
-  no_tgl_surat: String,
+  nomor_surat: String ,
+  tgl_surat: String,
   jenis_naskah: String ,
   pejabat_penanda_tangan: String ,
   jumlah_berkas: String ,

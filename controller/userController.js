@@ -165,11 +165,13 @@ export default {
     if (req.body !== '') {
       var newArchive = new Archive()
       newArchive.masalah = req.body.masalah
-      newArchive.no_tgl_surat = req.body.tgl_surat
+      newArchive.nomor_surat = req.body.nomor_surat
+      newArchive.tgl_surat = req.body.tgl_surat
       newArchive.jenis_naskah = req.body.jenis_naskah 
       newArchive.pejabat_penanda_tangan = req.body.pejabat_penanda_tangan
       newArchive.jumlah_berkas = req.body.jumlah_berkas
       newArchive.tingkat_perkembangan = req.body.tingkat_perkembangan 
+      newArchive.no_boks = req.body.no_boks 
       newArchive.user_id = req.session.user._id
 
       newArchive.save(function(err , result) {
@@ -218,11 +220,13 @@ export default {
     var id = req.params.id
     var query = {
      masalah: req.body.masalah ,
-     no_tgl_surat: req.body.tgl_surat ,
+     tgl_surat: req.body.tgl_surat ,
+     nomor_surat: req.body.nomor_surat ,
      jenis_naskah: req.body.jenis_naskah  ,
      pejabat_penanda_tangan: req.body.pejabat_penanda_tangan ,
      jumlah_berkas: req.body.jumlah_berkas ,
      tingkat_perkembangan: req.body.tingkat_perkembangan  ,
+     no_boks: req.body.no_boks  ,
      user_id: req.session.user._id
     }
     Archive.findByIdAndUpdate(id , query , (err , result) => {

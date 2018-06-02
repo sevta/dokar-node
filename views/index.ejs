@@ -5,11 +5,10 @@
 </head>
 <body>
   <% include ./_partials/popup_login %>
-  <div class="navbar-menu"></div>
+  <% include ./_partials/navbar %>
   <div id="n-home">
     <div class="section section1">
       <canvas id='gradient-bg'></canvas>
-      <% include ./_partials/navbar %>
       <div class="background"></div>
       <div class="center">
         <h1 class="title ml11">
@@ -71,7 +70,7 @@
       </div>
     </div>
 
-    <div class="section section3">
+<!--     <div class="section section3">
       <div class="section3--center">
         <div class="section3--center_title">Untuk mendukung hal tersebut, kami mengakui</div>
         <div class="slider-text">
@@ -90,7 +89,7 @@ dari evolusi masyarakat;</div>
         </div>
       </div>
     </div>
-
+ -->
     <div class="section section4">
       <div class="background-section4"></div>
       <div class="section4--center">
@@ -130,6 +129,7 @@ dari evolusi masyarakat;</div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
+  <script src='js/main.js'></script>
   <script src='js/home.js'></script>
   <script>
     $(document).ready(function() {
@@ -138,12 +138,13 @@ dari evolusi masyarakat;</div>
 
       $('#n-home').fullpage({
         verticalCentered: false,
-        afterLoad: function(index) {
-          console.log(index)
-        } ,
         onLeave: function(index , nextIndex , direction) {
-          console.log(nextIndex)
-          $('.title-center-2').removeClass('active')
+          console.log(index , nextIndex)
+          if (nextIndex !== 1) {
+            $('.n-navbar').addClass('hide')
+          } else {
+            $('.n-navbar').removeClass('hide')
+          }
         }
       })
 
@@ -154,27 +155,7 @@ dari evolusi masyarakat;</div>
 
       $('.ml11 .letters').each(function(){
         $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
-      });
-    
-      $('.burger-menu').on('click' , function() {
-        $(this).toggleClass('active')
-        $('.navbar-menu').toggleClass('active')
-        $('#n-home').toggleClass('active')
-        active = !active
-      })
-
-      $('.login-nav').on('click' , function() {
-        $('.popup-login').toggleClass('active')
-      })
-
-      $('.popup-login').on('click' , function() {
-        $(this).removeClass('active')
-      })
-
-      $('.popup-login--center').on('click' , function(evt) {
-        evt.stopPropagation()
-      })
-      
+      });      
   
       animateLettering()
       gradientBG()
@@ -211,14 +192,6 @@ dari evolusi masyarakat;</div>
             easing: "easeOutExpo",
             delay: 1000
           });
-      }
-
-      function moveBackground($el) {
-        var x = 0;
-        setInterval(function(){
-            x-=.1;
-            $($el).css('background-position', x + 'px 0');
-        }, 1);
       }
 
       function gradientBG() {

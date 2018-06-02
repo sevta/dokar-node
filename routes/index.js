@@ -45,7 +45,6 @@ router.get('/search' , authCheck , userController.search)
 router.get('/arsipdata' , authCheck , userController.arsipData)
 
 router.post('/deletearsip' , userController.deleteData)
-
 router.post('/login' , userController.login)
 router.post('/arsip/add' , userController.addArsip)
 router.post('/csv' , upload.single('csv') , adminController.handleCsv)

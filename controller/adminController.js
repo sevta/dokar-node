@@ -71,18 +71,20 @@ export default {
     }
     csv()
       .fromString(csv_string , function(err , json) {
+        console.log(json)
         console.log(json[0].JENIS_NASKAH_DINAS)
         
         json.map(function(obj , i) {
           var newArchive = new Archive()
           newArchive.id = i 
-          newArchive.no_tgl_surat = null 
-          newArchive.masalah = obj.MASALAH 
-          newArchive.jenis_naskah = obj.JENIS_NASKAH_DINAS 
-          newArchive.pejabat_penanda_tangan = obj.PEJABAT_PENANDA_TANGAN 
-          newArchive.tingkat_perkembangan = obj.TINGKAT_PERKEMBANGAN 
-          newArchive.jumlah_berkas = 1 
-          newArchive.no_boks = obj.NO_BOKS 
+          newArchive.tgl_surat = obj.tgl_surat 
+          newArchive.masalah = obj.masalah 
+          newArchive.jenis_naskah = obj.jenis_naskah 
+          newArchive.pejabat_penanda_tangan = obj.pejabat_penanda_tangan 
+          newArchive.tingkat_perkembangan = obj.tingkat_perkembangan 
+          newArchive.jumlah_berkas = obj.jumlah_berkas
+          newArchive.no_boks = obj.no_boks  
+          newArchive.nomor_surat = obj.nomor_surat  
           newArchive.user_id = req.session.user._id
           archives.push(newArchive)
           console.log('archives' , archives)

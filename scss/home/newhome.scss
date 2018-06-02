@@ -7,6 +7,13 @@ body {
   background: tomato;
 }
 
+.bg-orange {
+  background: $primary-color; 
+}
+.bg-transparent {
+  background: transparent; 
+}
+
 .popup-login {
   @include size(100% , 100%);
   position: fixed;
@@ -129,7 +136,109 @@ body {
     transform: translateX(0px);
   }
 }
-
+.n-navbar {
+  @include size(100% , 82px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  // background: white;
+  // background: $secondary-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 60;
+  padding: 0px 60px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all .3s ease;
+  &.hide {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  @media (max-width: 1024px) {
+    height: 62px;
+  }
+  .logo {
+    @include size(113px , 60px);
+    background: #333;
+    background: url('../../img/dki.png') no-repeat;
+    background-size: cover;
+    margin-left: -30px;
+    // margin-top: 15px;
+    // @include center-vertical;
+    // left: 90px;
+    @media (max-width: 1024px) {
+      width: 73px;
+      height: 40px;
+      margin-left: -60px;
+    }
+  }
+  .burger-menu {
+    @include size(24px , 20px);
+    // background: #333;
+    display: flex;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    // @include center-vertical;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    // align-items: space-between;
+    .line {
+      @include size(100% , 3px);
+      background: white;
+      border-radius: 2px;
+    }
+    @media (max-width: 1024px) {
+      display: flex;
+      &.active { z-index: 70; }
+    }
+  }
+  .navbar-list {
+    .login-nav {
+      background: $secondary-color;
+      border-radius: 20px;
+      padding: 6px 10px;
+      font-weight: bold;
+    }
+    a {
+      margin-right: 20px;
+      color: white;
+      // color: $secondary-color;
+      text-transform: capitalize;
+      font-size: 14px;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    @media (max-width: 1024px) {
+      visibility: hidden;
+      opacity: 0;
+      @include size(100% , 100%);
+      background: $secondary-color;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 60;
+      transform: translateY(-100%);
+      transition: all .4s ease;
+      &.active {
+        transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
+      }
+      a {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
 #n-home {
   transition: all .4s ease;
   &.active {
@@ -137,7 +246,7 @@ body {
   }
   .section1 {
     background: rgba($color: #E96404, $alpha: 0.9);
-    padding: 0px 20px;
+    // padding: 0px 20px;
     position: relative;
     &::before {
       content: '';
@@ -157,63 +266,6 @@ body {
       left: 0;
       background: tomato;
     }
-    .n-navbar {
-      @include size(100% , 82px);
-      position: absolute;
-      top: 0;
-      left: 0;
-      // background: white;
-      // background: $secondary-color;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0px 60px;
-      .logo {
-        @include size(113px , 60px);
-        background: #333;
-        background: url('../../img/dki.png') no-repeat;
-        background-size: cover;
-        margin-left: -30px;
-        // margin-top: 15px;
-        // @include center-vertical;
-        // left: 90px;
-      }
-      .burger-menu {
-        @include size(24px , 20px);
-        // background: #333;
-        display: flex;
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        // @include center-vertical;
-        left: 180px;
-        cursor: pointer;
-        // align-items: space-between;
-        .line {
-          @include size(100% , 3px);
-          background: white;
-          border-radius: 2px;
-        }
-      }
-      .navbar-list {
-        .login-nav {
-          background: $secondary-color;
-          border-radius: 20px;
-          padding: 6px 10px;
-          font-weight: bold;
-        }
-        a {
-          margin-right: 20px;
-          color: white;
-          // color: $secondary-color;
-          text-transform: capitalize;
-          font-size: 14px;
-          &:last-child {
-            margin-right: 0px;
-          }
-        }
-      }
-    }
     .background {
       @include size(2326px , 365px);
       background: url('../../img/city-111.svg') 0% 0% repeat;
@@ -230,17 +282,24 @@ body {
       position: absolute;
       top: 150px;
       left: 150px;
-      // left: 0;
-      // .title {
-      //   font-size: 60px;
-      //   color: white;
-      //   font-weight: bold;
-      // }
+      @media (max-width: 1024px) {
+        width: 100%;
+        padding: 0px 30px;
+        left: 0px;
+      }
+      .title {
+        @media (max-width: 1024px) {
+          font-size: 24px;
+        }
+      }
       .search-bar {
         .t-search { 
           font-size: 21px;
           // font-family: open sans;
           color: white;
+          @media (max-width: 1024px) {
+            font-size: 16px;
+          }
         }
         .search-bar--input {
           width: 398px;
@@ -255,6 +314,10 @@ body {
           margin-top: 10px;
           &:focus {
             outline: none;
+          }
+          @media (max-width: 1024px) {
+            max-width: 300px;
+            height: 35px;
           }
         }
         .search-btn {
@@ -274,6 +337,11 @@ body {
           cursor: pointer;
 
           margin-left: 10px;
+          @media (max-width: 768px) {
+            width: 83px;
+            height: 36px;
+            margin-top: 10px;
+          }
         }
       }
     }
@@ -441,5 +509,9 @@ body {
     // background: $orange;
     // background: $secondary-color;
     // text-align: center;
+    @media (max-width: 768px) {
+      padding: 15px 30px;
+      text-align: center;
+    }
   }
 }

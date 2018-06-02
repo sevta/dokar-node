@@ -34,8 +34,9 @@
 
     $('.burger-menu').on('click' , function() {
       $(this).toggleClass('active')
+      $('.navbar-list').toggleClass('active')
       $('.navbar-menu').toggleClass('active')
-      $('#regulasi').toggleClass('active')
+      $('#n-home').toggleClass('active')
     })
 
     $('.list-box').on('click' , function() {
