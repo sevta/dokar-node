@@ -43,6 +43,8 @@ router.get('/admin' , authCheck , adminController.index)
 router.get('/logout' , authCheck , userController.logout)
 router.get('/search' , authCheck , userController.search)
 router.get('/arsipdata' , authCheck , userController.arsipData)
+router.get('/pedoman' , authCheck , userController.pedoman)
+router.get('/intruksikerja' , authCheck , userController.intruksikerja)
 
 router.post('/deletearsip' , userController.deleteData)
 router.post('/login' , userController.login)
@@ -51,6 +53,7 @@ router.post('/csv' , upload.single('csv') , adminController.handleCsv)
 router.post('/seedusers' , adminController.seedUsers)
 router.post('/archive' , upload_archive.single('archive') , adminController.handleArchive)
 router.post('/updatearsip/(:id)' , userController.updatearsip)
+router.post('/adduser' , userController.adduser)
 
 
 

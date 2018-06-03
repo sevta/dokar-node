@@ -7,6 +7,7 @@ import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
 import mongoose from 'mongoose'
 import session from 'express-session'
+import flash from 'express-flash'
 // import favicon from 'serve-favicon';
 
 import index from './routes/index';
@@ -41,7 +42,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: '9845jklrfj89s' , resave: false , saveUninitialized: true}));
-
+app.use(flash());
 app.use('/', index);
 
 // catch 404 and forward to error handler

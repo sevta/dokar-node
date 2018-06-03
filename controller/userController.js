@@ -8,7 +8,7 @@ var query_search
 
 export default {
   index: (req , res , next) => {  
-    console.log('from home' , session)
+    // console.log('from home' , session)
     User.find({} , function(err , user) {
       if (err) {
         console.log(err)
@@ -259,6 +259,16 @@ export default {
       user: session
     })
   } ,
+  pedoman: (req , res , next) => {
+    res.render('pedoman/index' , {
+      user: session
+    })
+  } ,
+  intruksikerja: (req , res , next) => {
+    res.render('intruksikerja/index' , {
+      user: session
+    })
+  } ,
   profile: (req , res , next) => {
     if (req.session.user) {
         User.find({} , function(err , user) {
@@ -270,20 +280,53 @@ export default {
       res.redirect('/')
     }
   } ,
+  adduser: (req , res , next) => {
+    console.log(req.body)
+    User.findOne({username: req.body.username} , function(err , user) {
+      if (user) {
+        console.log('user has been exist! bail!')
+        req.flash('info' , 'user sudah ada')
+        res.redirect('/admin')
+      } else {
+        // check field user
+        var users = {
+          username: req.body.username ,
+          password: bcrypt.genSalt(req.body.password , bcrypt.genSaltSync(10)) ,
+          status: 2
+        }
+        var newuser = new User(users)
+        // newuser.username = req.body.username
+        // newuser.password = bcrypt.genSalt(req.body.password , bcrypt.genSaltSync(10))
+        // newuser.status = 1
+        newuser.save(function(err , result) {
+          if (err) {
+            console.log('error when it saving user')
+            res.redirect('/admin')
+          } else {
+            console.log('result is' , result)
+            res.redirect('/admin')
+          }
+        })
+      }
+    })
+  } ,
   login: (req , res , next) => {
     User.findOne({ username: req.body.username } , function(err, user) {
       console.log(user)
       if (!user) {
         console.log('not user')
-        res.redirect('/login')
+        req.flash('info' , 'user tidak di temukan')
+        res.redirect('/')
       } else {
         console.log(user)
         var compare = bcrypt.compareSync(req.body.password , user.password) 
         if (!compare) {
           console.log('wrong password')
-          res.redirect('/login')
+          req.flash('info' , 'password salah')
+          res.redirect('/')
         } else {
           console.log('success login')
+          req.flash('info' , 'sukses login')
           req.session.user = user;
           session = req.session.user;
           res.redirect('/')

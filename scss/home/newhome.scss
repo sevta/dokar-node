@@ -392,7 +392,8 @@ body {
         height: auto;
       }
       @media (max-width: 380px) {
-        transform: translate(-50%, -50%) scale(.8);
+        width: 120%;
+        transform: translate(-50%, -40%) scale(.8);
       }
       @media (max-width: 340px) {
         transform: translate(-50%, -47%) scale(.72);

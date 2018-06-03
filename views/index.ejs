@@ -8,6 +8,12 @@
   <% include ./_partials/navbar %>
   <div id="n-home">
     <div class="section section1">
+      <% if (messages.info) { %>
+      <div class="alert alert-dismissible alert-light" style="position: absolute; bottom: 0; left: 0; width: 100%; margin-bottom: 0; z-index: 90">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong></strong> <%= messages.info %> <a href="#" class="alert-link">this important alert message</a>.
+      </div>
+      <% } %>
       <canvas id='gradient-bg'></canvas>
       <div class="background"></div>
       <div class="center">
@@ -119,6 +125,7 @@ dari evolusi masyarakat;</div>
 
   <!-- additional script -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>

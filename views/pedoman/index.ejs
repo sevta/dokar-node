@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+
+  <!-- additional -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.css">
+  <link rel="stylesheet" href="./stylesheets/main.css">
+  <link rel="stylesheet" href="./stylesheets/home/newhome.css">
+  <link rel="stylesheet" href="./stylesheets/regulasi/newregulasi.css">
+  <style>
+    .pdfobject-container { height: 500px;}
+    .pdfobject { border: 1px solid #666; }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="pdf-container">
+      
+      <div id="pdf"></div>
+  </div>
+
+  <div class="navbar-menu"></div>
+  
+
+  <% include ../_partials/popup_login %>
+
+  <section id="regulasi">
+    <% include ../_partials/navbar %>
+    <div class="container-list">
+      <div class="list-title">Pedoman tim pembina kearsipan dinamis</div>
+      <div class="list-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae porro doloremque magni illum dolores pariatur voluptate ex.</div>
+
+      <a href='/web/viewer.html?file=/pdf/pedoman/pedoman tim pembina kearsipan dinamis.pdf' class="list-box" data-url='url'>
+        <div class="list-box--bullet"></div>
+        <div class="list-box--text">pedoman tim pembina kearsipan dinamis</div>
+      </a>
+    </div>
+  </section>
+
+    <div class="ornament-city"></div>
+    <div class="section fp-auto-height n-footer fix">
+      &copy; copyright dokumen arsip jakarta
+    </div>
+  
+  </div>
+
+  <!-- additional script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/granim/1.1.0/granim.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.0.201604172/pdfobject.min.js'></script>
+  <script src='js/home.js'></script>
+
+  <script src='./js/main.js'></script>
+</body>
+</html>

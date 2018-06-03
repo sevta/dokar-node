@@ -14,8 +14,8 @@ export default {
           Archive.find({})
             .populate('user_id')
             .exec(function(err , archive) {
-               console.log('archive ===========' , archive)
-                console.log('archive ===========' , archive.username)
+               // console.log('archive ===========' , archive)
+                // console.log('archive ===========' , archive.username)
                 res.render('_admin/index' , {
                   user ,
                   archive
